@@ -39,17 +39,7 @@ if(jQuery)( function() {
 							e.stopPropagation();
 						var srcElement = $(this);
 						$(this).unbind('mouseup');
-							//Check which mouse button to allow
-              if (o.allowLeftClick == true)
-              {
-                  var ButtonAllow = 0;
-              }
-              else
-              {
-                  var ButtonAllow = 2;
-              }
-              if( evt.button >= ButtonAllow ) {
-
+						if( evt.button == 2 ) {
 							// Hide context menus that may be showing
 							$(".contextMenu").hide();
 							// Get this context menu

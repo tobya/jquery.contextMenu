@@ -42,17 +42,17 @@
 				float: left;
 			}
 			
-			#myList {
+			.myList {
 				margin: 1em;
 				float: left;
 			}
 			
-			#myList UL {
+			.myList UL {
 				padding: 0px;
 				margin: 0em 1em;
 			}
 			
-			#myList LI {
+			.myList LI {
 				width: 100px;
 				border: solid 1px #2AA7DE;
 				background: #6CC8EF;
@@ -105,6 +105,20 @@
 						'X: ' + pos.docX + '  Y: ' + pos.docY+ ' (relative to document)'
 						);
 				});
+
+
+				// Show menu when a list item is clicked with Left Mouse Button
+				$("#myList2 UL LI").contextMenu({
+					menu: 'myMenu',
+          allowLeftClick: true,
+				}, function(action, el, pos) {
+					alert(
+						'Action: ' + action + '\n\n' +
+						'Element text: ' + $(el).text() + '\n\n' + 
+						'X: ' + pos.x + '  Y: ' + pos.y + ' (relative to element)\n\n' + 
+						'X: ' + pos.docX + '  Y: ' + pos.docY+ ' (relative to document)'
+						);
+				});
 				
 				// Disable menus
 				$("#disableMenus").click( function() {
@@ -132,9 +146,10 @@
 					$('#myMenu').enableContextMenuItems('#cut,#copy');
 					$(this).attr('disabled', true);
 					$("#disableItems").attr('disabled', false);
-				});				
-				
-			});
+				});	
+
+
+  		});
 			
 		</script>
 	</head>
@@ -160,7 +175,7 @@
 			Right click to view the context menu
 		</div>
 		
-		<div id="myList">
+		<div id="myList" class="myList">
 			<ul>
 				<li>Item 1</li>
 				<li>Item 2</li>
@@ -181,8 +196,21 @@
 				<input type="button" id="disableMenus" value="Disable Context Menus" />
 				<input type="button" id="enableMenus" value="Enable Context Menus" disabled="disabled" />
 			</p>
+
 		</div>
-		
+    <p>Show Menu Items with Left or Right Click</p>		
+		<div id="myList2"  class="myList">
+			<ul>
+				<li>Item 1</li>
+				<li>Item 2</li>
+				<li>Item 3</li>
+				<li>Item 4</li>
+				<li>Item 5</li>
+				<li>Item 6</li>
+			</ul>
+		</div>
+
+
 		<ul id="myMenu" class="contextMenu">
 			<li class="edit"><a href="#edit">Edit</a></li>
 			<li class="cut separator"><a href="#cut">Cut</a></li>
